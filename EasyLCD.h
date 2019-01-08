@@ -39,8 +39,10 @@ class EasyLCD
 
 		/**
 		 * Start up the LCD display (must be called before anything else is done).
+		 *
+		 * @return success or failure (is the lcd connected at the address given?)
 		 */
-		void begin();
+		bool begin();
 
 
 		 /**

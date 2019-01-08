@@ -32,8 +32,18 @@ EasyLCD::~EasyLCD(){
 }
 
 // Start the LCD 
-void EasyLCD::begin() {
-	_lcd->begin();
+bool EasyLCD::begin() {
+  // Check if LCD is plugged in
+  Wire.beginTransmission(lcd_addr);
+  byte error = Wire.endTransmission();
+
+  if (error != 0){
+    return false
+  }
+  else{
+    _lcd->begin();
+    return true
+  }
 }
 
 
