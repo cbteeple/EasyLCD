@@ -1,0 +1,29 @@
+###########################################
+# Syntax Coloring Map For EasyLCD
+###########################################
+
+###########################################
+# Datatypes (KEYWORD1)
+###########################################
+
+EasyLCD	KEYWORD1
+
+###########################################
+# Methods and Functions (KEYWORD2)
+###########################################
+begin	KEYWORD2
+noDisplay	KEYWORD2
+display	KEYWORD2
+noBacklight	KEYWORD2
+backlight	KEYWORD2
+write	KEYWORD2
+fadeOut	KEYWORD2
+fadeIn	KEYWORD2
+fadeBetweenTime	KEYWORD2
+fadeBetween	KEYWORD2
+fadeBetweenTime	KEYWORD2
+
+
+###########################################
+# Constants (LITERAL1)
+###########################################
