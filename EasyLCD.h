@@ -10,19 +10,13 @@
 	@version  0.1 2019_01_07
 */
 
-
-
 #ifndef EASYLCD_H
 #define EASYLCD_H
-
 
 #include <LiquidCrystal_I2C.h>
 #include <inttypes.h>
 
-
 /**
- * This is the driver for the Liquid Crystal LCD displays that use the I2C bus.
- *
  * After creating an instance of this class, first call begin() before anything else.
  * The backlight is on by default, since that is the most likely operating mode in
  * most cases.
@@ -33,49 +27,90 @@ class EasyLCD
 		/**
 		 * Constructor
 		 *
-		 * @param lcd_addr	I2C slave address of the LCD display. Most likely printed on the
-		 *					LCD circuit board, or look in the supplied LCD documentation.
+		 * @param lcd_addr	I2C slave address of the LCD display.
 		 * @param lcd_cols	Number of columns your LCD display has.
 		 * @param lcd_rows	Number of rows your LCD display has.
 		 * @param charsize	The size in dots that the display has, use LCD_5x10DOTS or LCD_5x8DOTS.
+		 					(or leave blank for default)
 		 */
 		EasyLCD(uint8_t lcd_addr, uint8_t lcd_cols, uint8_t lcd_rows, uint8_t charsize = LCD_5x8DOTS);
 
 		~EasyLCD();
+
 		/**
-		 * Set the LCD display in the correct begin state, must be called before anything else is done.
+		 * Start up the LCD display (must be called before anything else is done).
 		 */
 		void begin();
 
 
 		 /**
 		  * Do not show any characters on the LCD display. Backlight state will remain unchanged.
-		  * Also all characters written on the display will return, when the display in enabled again.
+		  * This saves what was on the display, and will show it when enabled again.
 		  */
+		void noDisplay();
+
+		/**
+		 * Show the characters on the LCD display. This is the normal behaviour. This method should
+		 * only be used after noDisplay() has been used.
+		 */
 		void display();
 
 		/**
-		 * Show the characters on the LCD display, this is the normal behaviour. This method should
-		 * only be used after noDisplay() has been used.
+		 * Turn off the backlight
 		 */
-		void noDisplay();
-
 		void noBacklight();
+
+		/**
+		 * Turn on the backlight
+		 */
 		void backlight();
 		
+		/**
+		 * Write a string to the lcd screen taking newline characters and overflow into account
+		 *
+		 * @param inStr	The string to write, including newlines. If the string is longer than
+		 *				each line, it will continue on the next line.
+		 */
 		void write(String);
 
+		/**
+		 * Perform a backlight fade-out using the timing parameter set in "fadeBetweenTime()"
+		 *     This is a neat hack using pulse-width modulation (turning the backlight on
+		 *     and off really fast)
+		 */
 		void fadeOut();
+
+		/**
+		 * Perform a backlight fade-in using the timing parameter set in "fadeBetweenTime()"
+		 */
 		void fadeIn ();
-		void fadeBetweenTime(uint16_t);
-		void fadeBetween(bool);
+
+		/**
+		 * Set the duration of all fade operations
+		 * 
+		 * @param numMilliseconds	The duration of fade operations (in ms)
+		 */
+		void fadeTime(uint16_t);
+
+		/**
+		 * Decide whether or not to fade off-and-on every time the screen is updated
+		 * 
+		 * @param state	True or False?
+		 */
+		void fadeOnUpdate(bool);
 
 	private:
+
+		/**
+		 * Get the state of the backlight
+		 */
 		bool getBacklight();
+
+		// Parameters
 		LiquidCrystal_I2C * _lcd;
-		bool _fadeBetweenOn = false;
-		uint16_t _fadeBetweenTime = 500; //[ms]
+		bool _fadeOnUpdateOn = false;
+		uint16_t _fadeTime = 500; //[ms]
 
 };
 
-#endif // FDB_LIQUID_CRYSTAL_I2C_H
+#endif // EASYLCD_H

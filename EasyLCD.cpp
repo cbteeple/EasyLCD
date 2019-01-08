@@ -18,19 +18,20 @@
 #include <LiquidCrystal_I2C.h>
 
 
-//Constructor
+//===================================================
+// PUBLIC FUNCTIONS
+
+// Constructor
 EasyLCD::EasyLCD(uint8_t lcd_addr, uint8_t lcd_cols, uint8_t lcd_rows, uint8_t char_size){
 	_lcd = new LiquidCrystal_I2C(lcd_addr, lcd_cols, lcd_rows, char_size);
 }
 
+// Deconstructor
 EasyLCD::~EasyLCD(){
 	delete _lcd;
 }
 
-
-//===================================================
-//PUBLIC
-
+// Start the LCD 
 void EasyLCD::begin() {
 	_lcd->begin();
 }
@@ -45,7 +46,7 @@ void EasyLCD::display() {
 }
 
 
-// Turn the (optional) backlight off/on
+// Turn the backlight on/off
 void EasyLCD::noBacklight(void) {
 	_lcd->noBacklight();
 }
@@ -55,10 +56,12 @@ void EasyLCD::backlight(void) {
 }
 
 
+// Send a string to the screen, taking newlines and
+// overflow into account
 void EasyLCD::write(String inStr){
   bool secondLine = false;
 
-  if(_fadeBetweenOn){
+  if(_fadeOnUpdateOn){
   	fadeOut();
   }
 
@@ -75,40 +78,36 @@ void EasyLCD::write(String inStr){
    
   }
 
-  if(_fadeBetweenOn){
+  if(_fadeOnUpdateOn){
   	fadeIn();
   }
 
 }
 
-
-//Fade between successive inputs of text?
-void EasyLCD::fadeBetween(bool fadeBetweenIn){
-	_fadeBetweenOn = fadeBetweenIn;
-}
-
-void EasyLCD::fadeBetweenTime(uint16_t fadeBetweenTimeIn){
-	_fadeBetweenTime = fadeBetweenTimeIn;
+// Set the fade time
+void EasyLCD::fadeTime(uint16_t numMilliseconds){
+	_fadeTime = numMilliseconds;
 }
 
 
-
+// Perform fade out
 void EasyLCD::fadeOut (){
-  for (int i=0; i<_fadeBetweenTime; i++){
+  for (int i=0; i<_fadeTime; i++){
     _lcd->noBacklight();
     delayMicroseconds((i));
     _lcd->backlight();
-    delayMicroseconds((_fadeBetweenTime-i));
+    delayMicroseconds((_fadeTime-i));
   }
   
   _lcd->noBacklight();
 }
 
 
+// Perform fade in
 void EasyLCD::fadeIn (){
-  for (int i=0; i<_fadeBetweenTime; i++){
+  for (int i=0; i<_fadeTime; i++){
     _lcd->noBacklight();
-    delayMicroseconds((_fadeBetweenTime-i));
+    delayMicroseconds((_fadeTime-i));
     _lcd->backlight();
     delayMicroseconds(i);
   }
@@ -116,10 +115,15 @@ void EasyLCD::fadeIn (){
 }
 
 
+// Fade between successive inputs of text?
+void EasyLCD::fadeOnUpdate(bool state){
+  _fadeOnUpdateOn = state;
+}
+
 
 
 //===================================================
-//PRIVATE
+// PRIVATE FUNCTIONS
 bool EasyLCD::getBacklight() {
   return _lcd->getBacklight();
 }

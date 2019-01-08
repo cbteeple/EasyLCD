@@ -19,9 +19,8 @@ backlight	KEYWORD2
 write	KEYWORD2
 fadeOut	KEYWORD2
 fadeIn	KEYWORD2
-fadeBetweenTime	KEYWORD2
-fadeBetween	KEYWORD2
-fadeBetweenTime	KEYWORD2
+fadeTime	KEYWORD2
+fadeOnUpdate	KEYWORD2
 
 
 ###########################################
