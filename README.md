@@ -3,13 +3,6 @@ Purpose: This library creates an easy-to-use interface for sending
 full strings to i2c LCD screens. It also adds some functionallity
 by allowing fading of the backlight on and off.
 
-@author   Clark Teeple
-
-@email    cbteeple@gmail.com
-
-@website  https://github.com/cbteeple/EasyLCD
-
-
 # How to Use
 ## Installation
 Create a new folder called "EasyLCD" under the folder named "libraries" in your Arduino sketchbook folder.
