@@ -24,6 +24,7 @@
 // Constructor
 EasyLCD::EasyLCD(uint8_t lcd_addr, uint8_t lcd_cols, uint8_t lcd_rows, uint8_t char_size){
 	_lcd = new LiquidCrystal_I2C(lcd_addr, lcd_cols, lcd_rows, char_size);
+  _lcd_addr=lcd_addr;
 }
 
 // Deconstructor
@@ -34,7 +35,7 @@ EasyLCD::~EasyLCD(){
 // Start the LCD 
 bool EasyLCD::begin() {
   // Check if LCD is plugged in
-  Wire.beginTransmission(lcd_addr);
+  Wire.beginTransmission(_lcd_addr);
   byte error = Wire.endTransmission();
 
   if (error != 0){
