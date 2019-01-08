@@ -34,15 +34,17 @@ EasyLCD::~EasyLCD(){
 
 // Start the LCD 
 bool EasyLCD::begin() {
+
+  _lcd->begin();
   // Check if LCD is plugged in
   Wire.beginTransmission(_lcd_addr);
   byte error = Wire.endTransmission();
+  //byte error=0;
 
   if (error != 0){
     return false;
   }
   else{
-    _lcd->begin();
     return true;
   }
 }
@@ -76,7 +78,9 @@ void EasyLCD::write(String inStr){
   	fadeOut();
   }
 
-  _lcd->clear();
+  if (_clearOnUpdateOn){
+    _lcd->clear();
+  }
   _lcd->setCursor(0,0);
   for (int i=0;i<inStr.length();i++){
     if ((i==16 & !secondLine) | inStr.charAt(i)=='\n'){
@@ -131,6 +135,10 @@ void EasyLCD::fadeOnUpdate(bool state){
   _fadeOnUpdateOn = state;
 }
 
+
+void EasyLCD::clearOnUpdate(bool state){
+  _clearOnUpdateOn = state;
+}
 
 
 //===================================================

@@ -101,6 +101,9 @@ class EasyLCD
 		 */
 		void fadeOnUpdate(bool);
 
+		void clearOnUpdate(bool);
+
+
 	private:
 
 		/**
@@ -112,6 +115,7 @@ class EasyLCD
 		LiquidCrystal_I2C * _lcd;
 		uint8_t _lcd_addr;
 		bool _fadeOnUpdateOn = false;
+		bool _clearOnUpdateOn = true;
 		uint16_t _fadeTime = 500; //[ms]
 
 };

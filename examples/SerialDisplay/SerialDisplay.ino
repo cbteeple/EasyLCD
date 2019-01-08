@@ -14,6 +14,9 @@ bool lcdAttached = false;
 
 void setup()
 {
+  // Initialize the serial port at a speed of 9600 baud
+  Serial.begin(115200);
+  
 	// Initialize the LCD
 	lcdAttached = lcd.begin();
 
@@ -34,9 +37,6 @@ void setup()
 	}
 
 	Serial.println(lcd_addr,HEX);
-
-	// Initialize the serial port at a speed of 9600 baud
-	Serial.begin(9600);
 }
 
 
@@ -57,7 +57,6 @@ void loop()
 		}
 	}
 }
-
 
 
 
