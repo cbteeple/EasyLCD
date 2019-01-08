@@ -4,7 +4,9 @@ full strings to i2c LCD screens. It also adds some functionallity
 by allowing fading of the backlight on and off.
 
 @author   Clark Teeple
+
 @email    cbteeple@gmail.com
+
 @website  https://github.com/cbteeple/EasyLCD
 
 
