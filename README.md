@@ -5,7 +5,7 @@ by allowing fading of the backlight on and off.
 
 @author   Clark Teeple
 @email    cbteeple@gmail.com
-@website  https://github.com/cbteeple/Easy_LCD
+@website  https://github.com/cbteeple/EasyLCD
 
 
 # How to Use
