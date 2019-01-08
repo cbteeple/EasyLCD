@@ -76,6 +76,15 @@ class EasyLCD
 		void write(String);
 
 		/**
+		 * Write a string to the lcd screen starting at a position
+		 *
+		 * @param inStr	The string to write. This function does not take newlines into account.
+		 * @param row 	The row to start printing at (zero-indexed).
+		 * @param col 	The column to start printing at (zero-indexed).
+		 */
+		void writeAtPosition(String inStr,int row,int col);
+
+		/**
 		 * Perform a backlight fade-out using the timing parameter set in "fadeBetweenTime()"
 		 *     This is a neat hack using pulse-width modulation (turning the backlight on
 		 *     and off really fast)

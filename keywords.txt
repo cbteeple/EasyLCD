@@ -17,10 +17,12 @@ display	KEYWORD2
 noBacklight	KEYWORD2
 backlight	KEYWORD2
 write	KEYWORD2
+writeAtPosition	KEYWORD2
 fadeOut	KEYWORD2
 fadeIn	KEYWORD2
 fadeTime	KEYWORD2
 fadeOnUpdate	KEYWORD2
+clearOnUpdate	KEYWORD2
 
 
 ###########################################

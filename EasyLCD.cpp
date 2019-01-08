@@ -99,6 +99,22 @@ void EasyLCD::write(String inStr){
 
 }
 
+// Send a string to the screen starting at a specific position
+void EasyLCD::writeAtPosition(String inStr,int row,int col){
+  if (_clearOnUpdateOn){
+    _lcd->clear();
+  }
+
+  _lcd->setCursor(col,row);
+
+  for (int i=0;i<inStr.length();i++){
+    _lcd->write(inStr.charAt(i));
+  }
+
+}
+
+
+
 // Set the fade time
 void EasyLCD::fadeTime(uint16_t numMilliseconds){
 	_fadeTime = numMilliseconds;
