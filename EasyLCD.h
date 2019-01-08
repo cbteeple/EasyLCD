@@ -110,7 +110,7 @@ class EasyLCD
 
 		// Parameters
 		LiquidCrystal_I2C * _lcd;
-		unsigned int _lcd_addr;
+		uint8_t _lcd_addr;
 		bool _fadeOnUpdateOn = false;
 		uint16_t _fadeTime = 500; //[ms]
 

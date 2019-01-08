@@ -39,11 +39,11 @@ bool EasyLCD::begin() {
   byte error = Wire.endTransmission();
 
   if (error != 0){
-    return false
+    return false;
   }
   else{
     _lcd->begin();
-    return true
+    return true;
   }
 }
 
