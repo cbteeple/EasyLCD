@@ -12,4 +12,6 @@ Create the folder "libraries" in case it does not exist yet. Place all the files
 To use the library in your own sketch, select it from *Sketch > Import Library*.
 
 ## Dependencies
-This library depends on the *Wire* and *LiquidCrystal_I2C* libraries.
+This library depends on:
+- [Arduino Wire](https://www.arduino.cc/en/Reference/Wire), the builtin Arduino library
+- [LiquidCrystal_I2C](https://github.com/johnrickman/LiquidCrystal_I2C) by johnrickman .
